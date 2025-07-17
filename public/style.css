@@ -1,0 +1,511 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*  MOBILE FIRST  */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(
+    45deg,
+    #4facfe 0%,
+    #00f2fe 100%
+  ); /* Efecto degrade */
+  color: white;
+  padding: 20px 15px;
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 1em;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.header h1 {
+  font-size: 1.8em;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Grid de 1  */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px 15px;
+}
+
+.form-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  height: fit-content;
+}
+
+.form-section h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4facfe;
+  box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+}
+
+.btn-add {
+  width: 100%;
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.users-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.users-section h2 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3em;
+}
+
+.users-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.user-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-id {
+  font-size: 0.8em;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.user-name {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.user-details {
+  font-size: 0.9em;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 30px 15px;
+  font-size: 0.95em;
+}
+
+/* Añado css para botones y mensajes añadidos con js */
+
+/* Estilos para mensajes de error y éxito */
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 15px;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  display: none;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px 15px;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  display: none;
+}
+
+/* Botón de validar emails */
+.btn-validate {
+  width: 100%;
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+.btn-validate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.25);
+}
+
+/* Botón de eliminar */
+.btn-delete {
+  background: linear-gradient(45deg, #bc4d58, #c82333);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Estado de email en las cards */
+.email-status {
+  margin-top: 8px;
+  padding: 6px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85em;
+}
+
+.email-status span {
+  font-weight: 500;
+}
+
+.email-status small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+/* Mejoras para las cards de usuario */
+.user-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 80%);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-details {
+  font-size: 0.9em;
+  opacity: 0.9;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+/* Contenedor de acciones en la card */
+.user-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* TABLET - min-width: 768px */
+@media (min-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    border-radius: 18px;
+  }
+
+  .header {
+    padding: 25px;
+  }
+
+  .welcome-message {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .header h1 {
+    font-size: 2.2em;
+  }
+
+  .content {
+    gap: 25px;
+    padding: 25px;
+  }
+
+  .form-section,
+  .users-section {
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .form-section h2,
+  .users-section h2 {
+    font-size: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .user-card {
+    padding: 18px;
+    border-radius: 11px;
+    transition: transform 0.3s ease;
+  }
+
+  .user-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-add:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.25);
+  }
+
+  .error-message,
+  .success-message {
+    padding: 14px 18px;
+    font-size: 0.95em;
+    border-radius: 10px;
+  }
+
+  .btn-validate {
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.05em;
+  }
+
+  .btn-validate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+  }
+
+  .btn-delete {
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.95em;
+  }
+
+  .btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.35);
+  }
+
+  .email-status {
+    font-size: 0.9em;
+    margin-top: 10px;
+    padding: 8px 0;
+  }
+
+  .user-card {
+    padding: 18px;
+    gap: 10px;
+  }
+
+  .user-actions {
+    gap: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+}
+
+/* DESKTOP - min-width: 1024px */
+@media (min-width: 1024px) {
+  body {
+    padding: 20px;
+  }
+
+  .container {
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    padding: 30px;
+  }
+
+  .welcome-message {
+    font-size: 1.2em;
+  }
+
+  .header h1 {
+    font-size: 2.5em;
+  }
+
+  /* 2 COLUMNAS EN DESKTOP */
+  .content {
+    grid-template-columns: 1fr 2fr; /* Formulario más pequeño, lista más grande */
+    gap: 30px;
+    padding: 30px;
+  }
+
+  .form-section,
+  .users-section {
+    padding: 25px;
+    border-radius: 15px;
+  }
+
+  .form-section h2,
+  .users-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input {
+    border-radius: 10px;
+  }
+
+  .btn-add {
+    border-radius: 10px;
+    font-size: 1.1em;
+  }
+
+  .btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+  }
+
+  .users-grid {
+    gap: 15px;
+  }
+
+  .user-card {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .user-name {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+  }
+
+  .empty-state {
+    padding: 40px;
+  }
+
+  /* elementos agregados con js */
+  .error-message,
+  .success-message {
+    padding: 16px 20px;
+    font-size: 1em;
+    border-radius: 12px;
+  }
+
+  .btn-validate {
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 1.1em;
+  }
+
+  .btn-validate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(40, 167, 69, 0.35);
+  }
+
+  .btn-delete {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+  }
+
+  .btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
+  }
+
+  .email-status {
+    font-size: 0.95em;
+    margin-top: 12px;
+    padding: 10px 0;
+  }
+
+  .user-card {
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .user-actions {
+    gap: 15px;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+}
