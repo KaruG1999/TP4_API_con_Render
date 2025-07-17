@@ -9,8 +9,6 @@ const formulario = document.getElementById('userForm');
 const contenedorUsuarios = document.getElementById('usersContainer');
 const mensajeBienvenida = document.getElementById('welcomeMessage');
 
-// Cambiar de localhost a tu URL de Render
-const API_URL = 'https://tp4-api-con-render.onrender.com';
 
 // Instancia del validador de emails
 const emailValidator = new EmailValidator();
