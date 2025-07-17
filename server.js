@@ -11,13 +11,27 @@ const PORT = process.env.PORT || 3000;
 app.use(
   cors({
     origin: [
-      'https://karug1999.github.io/TP4_API_con_Render/', // Reemplaza con tu URL de GitHub Pages
+      'https://karug1999.github.io', // Sin la barra final
+      'https://karug1999.github.io/TP4_API_con_Render', // Sin la barra final
+      'https://karug1999.github.io/TP4_API_con_Render/', // Con la barra final
       'http://localhost:3000',
+      'http://localhost:5000',
+      'http://localhost:8080',
       'https://tp4-api-con-render.onrender.com',
     ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   })
 );
+
+// Middleware adicional para debugging CORS
+app.use((req, res, next) => {
+  console.log('Request Origin:', req.headers.origin);
+  console.log('Request Method:', req.method);
+  console.log('Request Headers:', req.headers);
+  next();
+});
 
 // Middleware para parsear JSON
 app.use(express.json());
@@ -31,6 +45,7 @@ app.post('/api/validate-email', async (req, res) => {
     const { email } = req.body;
 
     console.log('Servidor recibió petición para validar:', email);
+    console.log('Origin de la petición:', req.headers.origin);
 
     if (!email) {
       console.error('Email no proporcionado');
@@ -131,11 +146,37 @@ function getValidationReason(data) {
   }
 }
 
+// Ruta de prueba para verificar CORS
+app.get('/api/test', (req, res) => {
+  res.json({
+    message: 'CORS funcionando correctamente',
+    origin: req.headers.origin,
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Ruta por defecto
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Middleware para manejar errores 404
+app.use((req, res) => {
+  console.log('Ruta no encontrada:', req.method, req.path);
+  res.status(404).json({
+    error: 'Ruta no encontrada',
+    method: req.method,
+    path: req.path,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log('Orígenes permitidos:', [
+    'https://karug1999.github.io',
+    'https://karug1999.github.io/TP4_API_con_Render',
+    'https://karug1999.github.io/TP4_API_con_Render/',
+    'http://localhost:3000',
+    'https://tp4-api-con-render.onrender.com',
+  ]);
 });

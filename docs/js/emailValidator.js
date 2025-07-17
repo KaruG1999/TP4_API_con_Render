@@ -2,10 +2,11 @@
 class EmailValidator {
   constructor() {
     this.isValidating = false;
+    this.API_URL = 'https://tp4-api-con-render.onrender.com';
   }
 
-  // Validación local como respaldo comentada para no usarla hasta que funcione la API externa
-  /*  validarEmailLocal(email) {
+  // Validación local como respaldo
+  /* validarEmailLocal(email) {
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     const dominiosValidos = [
@@ -46,7 +47,7 @@ class EmailValidator {
     try {
       console.log('Validando email con API:', email);
 
-      const response = await fetch('/api/validate-email', {
+      const response = await fetch(`${this.API_URL}/api/validate-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +55,15 @@ class EmailValidator {
         body: JSON.stringify({ email }),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       if (!response.ok) {
+        console.error(
+          'Error en response:',
+          response.status,
+          response.statusText
+        );
         throw new Error(`Error HTTP: ${response.status}`);
       }
 
@@ -126,15 +135,3 @@ class EmailValidator {
 
 // Exportar para uso en otros módulos
 window.EmailValidator = EmailValidator;
-/*  hace que la clase EmailValidator quede disponible 
-globalmente en el navegador, sin necesidad de usar import en otros archivos como script.js.
-
-Importante!! Al hacerlo con window. no es necesario exportar la clase EmailValidator en script.js, ni especificar
-en html <script type="module" src="./js/EmailValidator.js"></script>*/
-
-
-/* prueba con render  */
-// Si este archivo también hace peticiones a tu API
-const API_URL = 'https://tp4-api-con-render.onrender.com';
-
-// Usar en tus validaciones que requieran el servidor

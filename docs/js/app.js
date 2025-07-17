@@ -9,6 +9,8 @@ const formulario = document.getElementById('userForm');
 const contenedorUsuarios = document.getElementById('usersContainer');
 const mensajeBienvenida = document.getElementById('welcomeMessage');
 
+// Configuración de la API
+const API_URL = 'https://tp4-api-con-render.onrender.com';
 
 // Instancia del validador de emails
 const emailValidator = new EmailValidator();
@@ -312,13 +314,25 @@ function mostrarMensajeExito(mensaje) {
     divExito.style.display = 'none';
   }, 3000);
 }
-/* Pueba de render  */
 
-// Ejemplo de uso en tus peticiones:
-fetch(`${API_URL}/api/endpoint`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-});
+// Función para realizar peticiones a la API
+async function hacerPeticionAPI(endpoint, options = {}) {
+  try {
+    const response = await fetch(`${API_URL}${endpoint}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      ...options,
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error en petición API:', error);
+    throw error;
+  }
+}
