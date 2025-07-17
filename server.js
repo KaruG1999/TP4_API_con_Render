@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(
   cors({
     origin: [
-      'https://tu-usuario.github.io', // Reemplaza con tu URL de GitHub Pages
+      'https://karug1999.github.io/TP4_API_con_Render/', // Reemplaza con tu URL de GitHub Pages
       'http://localhost:3000',
       'https://tp4-api-con-render.onrender.com',
     ],
