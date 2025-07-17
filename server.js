@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 3000;
 // Configurar CORS para permitir peticiones desde el frontend
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: [
+      'https://tu-usuario.github.io', // Reemplaza con tu URL de GitHub Pages
+      'http://localhost:3000',
+      'https://tp4-api-con-render.onrender.com',
+    ],
     credentials: true,
   })
 );

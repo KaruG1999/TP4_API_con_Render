@@ -312,3 +312,15 @@ function mostrarMensajeExito(mensaje) {
     divExito.style.display = 'none';
   }, 3000);
 }
+/* Pueba de render  */
+// Cambiar de localhost a tu URL de Render
+const API_URL = 'https://tp4-api-con-render.onrender.com';
+
+// Ejemplo de uso en tus peticiones:
+fetch(`${API_URL}/api/endpoint`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+})

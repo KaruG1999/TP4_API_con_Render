@@ -131,3 +131,10 @@ globalmente en el navegador, sin necesidad de usar import en otros archivos como
 
 Importante!! Al hacerlo con window. no es necesario exportar la clase EmailValidator en script.js, ni especificar
 en html <script type="module" src="./js/EmailValidator.js"></script>*/
+
+
+/* prueba con render  */
+// Si este archivo también hace peticiones a tu API
+const API_URL = 'https://tp4-api-con-render.onrender.com';
+
+// Usar en tus validaciones que requieran el servidor
